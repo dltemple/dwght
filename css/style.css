@@ -1,0 +1,63 @@
+/* ---------- CSS RESET ---------- */
+@import url("https://cdn.jsdelivr.net/npm/modern-normalize@2/modern-normalize.min.css");
+
+/* ---------- VARIABLES ---------- */
+:root {
+  --body-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+               Arial, sans-serif;
+  --head-font: Georgia, "Times New Roman", Times, serif;
+  --measure: 60ch;
+}
+
+/* ---------- BASE TYPOGRAPHY ---------- */
+html { font-size: 18px; }
+body {
+  font-family: var(--body-font);
+  line-height: 1.65;
+  margin: 0;
+  color: #111;
+  background: #fff;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--head-font);
+  line-height: 1.25;
+  margin: 3rem 0 1rem;
+}
+p, ul, ol { margin: 1rem 0; }
+
+/* ---------- LAYOUT ---------- */
+nav {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+nav a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+}
+nav a:hover { text-decoration: underline; }
+
+main {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;   /* top right/left bottom */
+}
+
+/* ---------- IMAGES & FIGURES ---------- */
+img, video { max-width: 100%; height: auto; border-radius: 0.4rem; }
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 700px) {
+  nav {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+}

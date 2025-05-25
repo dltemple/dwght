@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title id="pagetitle">Loading…</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- reuse your fixed-left nav here -->
+  <nav>
+    <a href="index.html">About</a>
+    <!-- …other links… -->
+  </nav>
+
+  <main id="content"><p>Loading…</p></main>
+
+  <script>
+    /* ------- resolve ?file=my-post or /post.html#my-post ------- */
+    const params = new URLSearchParams(location.search);
+    const mdFile = params.get("file") || location.hash.slice(1);
+    if (!mdFile) { document.getElementById("content").textContent =
+                   "⚠️ No markdown file specified."; throw "No MD"; }
+
+    fetch(mdFile).then(r => r.text()).then(src => {
+      document.getElementById("content").innerHTML = marked.parse(src);
+      /* first heading becomes page title */
+      const h1 = document.querySelector("main h1");
+      if (h1) document.getElementById("pagetitle").textContent = h1.textContent;
+    }).catch(err => {
+      document.getElementById("content").textContent =
+        "Error loading post: " + err;
+    });
+  </script>
+</body>
+</html>
